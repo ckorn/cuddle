@@ -23,8 +23,8 @@ namespace Logic.ImageManagement
                 var image = new BitmapImage();
                 image.BeginInit();
                 image.CacheOption = BitmapCacheOption.OnLoad;
-                image.DecodePixelHeight = 18;
-                image.DecodePixelWidth = 18;
+                //image.DecodePixelHeight = 18;
+                //image.DecodePixelWidth = 18;
                 image.StreamSource = stream;
                 image.EndInit();
                 image.Freeze();

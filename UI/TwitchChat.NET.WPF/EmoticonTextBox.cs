@@ -10,12 +10,15 @@ namespace TwitchChat.NET.WPF
 {
     class EmoticonTextBox : TextEditor
     {
+        public ImageElementGenerator ImageElementGenerator { get; }
         public EmoticonTextBox()
         {
             HorizontalScrollBarVisibility = ScrollBarVisibility.Auto;
-            VerticalScrollBarVisibility = ScrollBarVisibility.Disabled;
+            VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
 
-            TextArea.TextView.ElementGenerators.Add(new ImageElementGenerator());
+            this.ImageElementGenerator = new ImageElementGenerator();
+
+            TextArea.TextView.ElementGenerators.Add(this.ImageElementGenerator);
         }
     }
 }

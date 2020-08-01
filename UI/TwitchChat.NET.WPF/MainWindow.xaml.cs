@@ -43,7 +43,7 @@ namespace TwitchChat.NET.WPF
             InitializeComponent();
 
             emoteCache = new EmoteCache(new EmoteFactory(new Client(), new BitmapFunctions()));
-            bot = new Bot(new Logger(), emoteCache, null);
+            bot = new Bot(new Logger(), emoteCache, this.textEditor.ImageElementGenerator);
             acquireToken = new AcquireToken();
             settings = new Settings();
             bot.Connected += Bot_Connected;
