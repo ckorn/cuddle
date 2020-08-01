@@ -18,7 +18,11 @@ namespace Logic.Twitch
 
         public CrossCutting.DataClasses.Message ConvertMessage(ChatMessage message) 
         {
-            CrossCutting.DataClasses.Message ret = new CrossCutting.DataClasses.Message() { PlainText = message.Message };
+            CrossCutting.DataClasses.Message ret = new CrossCutting.DataClasses.Message()
+            {
+                PlainText = message.Message,
+                Username = message.Username
+            };
             foreach (Emote item in message.EmoteSet.Emotes)
             {
                 CrossCutting.DataClasses.Emote emote = this.emoteCache.GetEmote(item.Id, item.Name, item.ImageUrl);

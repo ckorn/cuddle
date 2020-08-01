@@ -51,13 +51,17 @@ namespace TwitchChat.NET.WPF
         }
         private void Bot_MessageReceived(object sender, CrossCutting.DataClasses.Message e)
         {
+            void doIt() 
+            {
+                this.textEditor.AppendText($"{e.DisplayMessage}{Environment.NewLine}");
+            }
             if (!Dispatcher.CheckAccess())
             {
-                Dispatcher.Invoke(() => this.textEditor.AppendText(e.PlainText + Environment.NewLine));
+                Dispatcher.Invoke(() => doIt());
             }
             else
             {
-                this.textEditor.AppendText(e.PlainText + Environment.NewLine);
+                doIt();
             }
         }
 

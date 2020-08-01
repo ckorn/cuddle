@@ -1,5 +1,6 @@
 ﻿using CrossCutting.DataClasses;
 using ICSharpCode.AvalonEdit.Rendering;
+using Logic.Chat;
 using Logic.Chat.Contracts;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace TwitchChat.NET.WPF
         private static readonly Dictionary<string, Message> textMessageDict = new Dictionary<string, Message>();
 
         private readonly Dictionary<string, Emote> emoteDict;
+        private readonly MessageFormatManager messageFormatManager = new MessageFormatManager();
 
         public ImageElementGenerator()
         {
@@ -32,9 +34,10 @@ namespace TwitchChat.NET.WPF
 
             if (textMessageDict.TryGetValue(fullLine, out Message message)) 
             {
-                foreach (EmotePosition emotePosition in message.EmotePositionList.Where(x => x.StartIndex >= fullLineStartOffset).OrderBy(x => x.StartIndex))
+                int indexCompare = (fullLineStartOffset == 0) ? 0 : fullLineStartOffset - message.PrefixLength;
+                foreach (EmotePosition emotePosition in message.EmotePositionList.Where(x => x.StartIndex >= indexCompare).OrderBy(x => x.StartIndex))
                 {
-                    return new Tuple<int, string>(emotePosition.StartIndex - fullLineStartOffset, emotePosition.Emote.Name);
+                    return new Tuple<int, string>(emotePosition.StartIndex - fullLineStartOffset + message.PrefixLength, emotePosition.Emote.Name);
                 }
             }
 
@@ -77,9 +80,10 @@ namespace TwitchChat.NET.WPF
         #region IMessageFormatManager
         void IMessageFormatManager.Format(Message message)
         {
-            if (!textMessageDict.ContainsKey(message.PlainText))
+            this.messageFormatManager.Format(message);
+            if (!textMessageDict.ContainsKey(message.DisplayMessage))
             {
-                textMessageDict.Add(message.PlainText, message);
+                textMessageDict.Add(message.DisplayMessage, message);
                 foreach (EmotePosition emotePosition in message.EmotePositionList)
                 {
                     if ((!this.emoteDict.ContainsKey(emotePosition.Emote.Name)) && (!string.IsNullOrEmpty(emotePosition?.Emote?.Name)))
