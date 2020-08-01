@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29613.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitchChat.NET", "UI\TwitchChat.NET\TwitchChat.NET.csproj", "{165F415E-2BB7-4985-A538-380B631F6F9B}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Logic", "Logic", "{15C01D34-F1C9-42D5-9732-52B63EDCAA7C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "CrossCutting", "CrossCutting", "{0ECFF911-9977-43D2-98EF-E33C9E51C71E}"
@@ -53,10 +51,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{165F415E-2BB7-4985-A538-380B631F6F9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{165F415E-2BB7-4985-A538-380B631F6F9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{165F415E-2BB7-4985-A538-380B631F6F9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{165F415E-2BB7-4985-A538-380B631F6F9B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FC3EB82C-B8D9-4AE9-B8F3-A5DFBA8F6EF2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FC3EB82C-B8D9-4AE9-B8F3-A5DFBA8F6EF2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FC3EB82C-B8D9-4AE9-B8F3-A5DFBA8F6EF2}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -134,7 +128,6 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{165F415E-2BB7-4985-A538-380B631F6F9B} = {94FCC097-B8F8-47BD-BBD8-0DDCED89EDB3}
 		{FC3EB82C-B8D9-4AE9-B8F3-A5DFBA8F6EF2} = {0ECFF911-9977-43D2-98EF-E33C9E51C71E}
 		{01295C0C-4F62-469A-B427-CA3F891B73EC} = {15C01D34-F1C9-42D5-9732-52B63EDCAA7C}
 		{840A2C00-DB65-40EB-8CA2-5DCDFF738DEE} = {15C01D34-F1C9-42D5-9732-52B63EDCAA7C}
