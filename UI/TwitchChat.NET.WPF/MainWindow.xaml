@@ -5,12 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TwitchChat.NET.WPF"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    
-    <avalonEdit:TextEditor
-    xmlns:avalonEdit="http://icsharpcode.net/sharpdevelop/avalonedit"
-    Name="textEditor"
-    SyntaxHighlighting="C#"
-    FontFamily="Consolas"
-    FontSize="10pt"/>
+        Title="MainWindow" Height="450" Width="800" Loaded="Window_Loaded">
+
+    <local:EmoticonTextBox x:Name="textEditor" IsReadOnly="True"></local:EmoticonTextBox>
 </Window>

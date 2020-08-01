@@ -84,7 +84,7 @@ namespace Logic.Twitch
         private void Client_OnMessageReceived(object sender, OnMessageReceivedArgs e)
         {
             CrossCutting.DataClasses.Message message = this.messageConverter.ConvertMessage(e.ChatMessage);
-            this.messageFormatManager.Format(message);
+            this.messageFormatManager?.Format(message);
             MessageReceived?.Invoke(this, message);
             logger.Log($"{e.ChatMessage.Username}: {e.ChatMessage.Message} {e.ChatMessage.EmoteReplacedMessage}");
             //if (e.ChatMessage.Message.Contains("badword"))

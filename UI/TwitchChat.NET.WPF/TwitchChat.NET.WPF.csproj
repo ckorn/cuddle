@@ -67,6 +67,8 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="EmoticonTextBox.cs" />
+    <Compile Include="ImageElementGenerator.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -98,6 +100,76 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\DataClasses\DataClasses.csproj">
+      <Project>{FC3EB82C-B8D9-4AE9-B8F3-A5DFBA8F6EF2}</Project>
+      <Name>DataClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CrossCutting\Logging.Contracts\Logging.Contracts.csproj">
+      <Project>{D90C5263-331D-411E-9719-5A4063C192E7}</Project>
+      <Name>Logging.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CrossCutting\Logging\Logging.csproj">
+      <Project>{EEBB3C93-A41F-4C7F-8B25-71815EC2896A}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Authorization.Contracts\Authorization.Contracts.csproj">
+      <Project>{7CDE6EBB-4B2B-422F-98FD-CB132A025ACB}</Project>
+      <Name>Authorization.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Authorization\Authorization.csproj">
+      <Project>{C95BF085-342E-4D4E-8FE6-6B40CBD106D2}</Project>
+      <Name>Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Chat.Contracts\Chat.Contracts.csproj">
+      <Project>{EC58CA16-667E-45FE-B409-AF019A79A01F}</Project>
+      <Name>Chat.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Chat\Chat.csproj">
+      <Project>{ABC79C7B-1012-473D-BBC2-04CE19FE8CF5}</Project>
+      <Name>Chat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Emotes.Contracts\Emotes.Contracts.csproj">
+      <Project>{A791249B-790D-491F-B634-CBAD836229DB}</Project>
+      <Name>Emotes.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Emotes\Emotes.csproj">
+      <Project>{44FB5CEC-9CC9-4D98-AD99-842F9B7A8BBE}</Project>
+      <Name>Emotes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\HttpClient.Contracts\HttpClient.Contracts.csproj">
+      <Project>{8DBDEACE-0F01-4CAD-8916-42D26B18BBAB}</Project>
+      <Name>HttpClient.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\HttpClient\HttpClient.csproj">
+      <Project>{C93352EB-8D81-42CB-A8AD-264FCF46D56F}</Project>
+      <Name>HttpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\ImageManagement.Contracts\ImageManagement.Contracts.csproj">
+      <Project>{00B6BD70-1FEF-4EF0-B6AC-B0536CA99C55}</Project>
+      <Name>ImageManagement.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\ImageManagement\ImageManagement.csproj">
+      <Project>{F86E537D-80BC-4F74-B77A-450DCCD57034}</Project>
+      <Name>ImageManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Settings.Contracts\Settings.Contracts.csproj">
+      <Project>{26167719-AC7E-4B24-AF59-234704E6A870}</Project>
+      <Name>Settings.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Settings\Settings.csproj">
+      <Project>{882FE666-E00C-4AFB-B1C1-DABCF37B0ACC}</Project>
+      <Name>Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Twitch.Contracts\Twitch.Contracts.csproj">
+      <Project>{840A2C00-DB65-40EB-8CA2-5DCDFF738DEE}</Project>
+      <Name>Twitch.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Twitch\Twitch.csproj">
+      <Project>{01295C0C-4F62-469A-B427-CA3F891B73EC}</Project>
+      <Name>Twitch</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
