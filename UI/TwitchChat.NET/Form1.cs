@@ -25,13 +25,11 @@ namespace TwitchChat.NET
         private readonly IAcquireToken acquireToken;
         private readonly ISettings settings;
         private readonly IEmoteCache emoteCache;
-        private readonly IMessageFormatManager messageFormatManager;
         public Form1()
         {
             InitializeComponent();
             emoteCache = new EmoteCache(new EmoteFactory(new Client(), new BitmapFunctions()));
-            messageFormatManager = new MessageFormatRtfManager();
-            bot = new Bot(new Logger(this), emoteCache, messageFormatManager);
+            bot = new Bot(new Logger(this), emoteCache, null);
             acquireToken = new AcquireToken();
             settings = new Settings();
             bot.Connected += Bot_Connected;
@@ -65,19 +63,19 @@ namespace TwitchChat.NET
             }
             bot.Connect("tarosmolos", "***REMOVED***");
 
-            MessageFormatRtfManager messageFormat = new MessageFormatRtfManager();
-            CrossCutting.DataClasses.Message message = new CrossCutting.DataClasses.Message();
-            message.PlainText = "Kappa";
-            byte[] data = File.ReadAllBytes(@"c:\temp\Kappa.0");
-            Bitmap bitmap;
-            using (MemoryStream stream = new MemoryStream(data))
-            {
-                bitmap = new Bitmap(stream);
-            }
-            message.EmotePositionList.Add(new CrossCutting.DataClasses.EmotePosition() { StartIndex = 0, EndIndex = 4, Id = "1", Emote = new CrossCutting.DataClasses.Emote() { Id = "1", Name = "Kappa", Data = data, Bitmap = bitmap } });
-            messageFormat.Format(message);
+            //MessageFormatRtfManager messageFormat = new MessageFormatRtfManager();
+            //CrossCutting.DataClasses.Message message = new CrossCutting.DataClasses.Message();
+            //message.PlainText = "Kappa";
+            //byte[] data = File.ReadAllBytes(@"c:\temp\Kappa.0");
+            //Bitmap bitmap;
+            //using (MemoryStream stream = new MemoryStream(data))
+            //{
+            //    bitmap = new Bitmap(stream);
+            //}
+            //message.EmotePositionList.Add(new CrossCutting.DataClasses.EmotePosition() { StartIndex = 0, EndIndex = 4, Id = "1", Emote = new CrossCutting.DataClasses.Emote() { Id = "1", Name = "Kappa", Data = data, Bitmap = bitmap } });
+            //messageFormat.Format(message);
 
-            richTextBoxOutput.Rtf = message.EmoteText;
+            //richTextBoxOutput.Rtf = message.EmoteText;
             ////using (IClient client = new Client())
             //{
             //    client.Connect("irc.chat.twitch.tv", 6697);
