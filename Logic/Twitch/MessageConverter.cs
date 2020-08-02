@@ -26,7 +26,7 @@ namespace Logic.Twitch
             {
                 Id = message.Id,
                 PlainText = message.Message,
-                Username = message.Username,
+                Username = message.DisplayName,
                 Usercolor = message.Color,
                 UsercolorHex = message.ColorHex,
             };
