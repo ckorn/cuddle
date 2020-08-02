@@ -30,6 +30,7 @@ namespace Logic.Emotes
                     if (!emoteCache.TryGetValue(id, out emote)) 
                     {
                         emote = emoteFactory.GetEmote(id, name, url);
+                        emoteCache.Add(id, emote);
                     }
                 }
             }
