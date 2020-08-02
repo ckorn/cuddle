@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TwitchChat.NET.WPF
+namespace UI.CuddleClient
 {
     class EmoteElementGenerator : VisualLineElementGenerator, IElementGenerator
     {

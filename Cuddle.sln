@@ -37,7 +37,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClient", "Logic\HttpCli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HttpClient.Contracts", "Logic\HttpClient.Contracts\HttpClient.Contracts.csproj", "{8DBDEACE-0F01-4CAD-8916-42D26B18BBAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TwitchChat.NET.WPF", "UI\TwitchChat.NET.WPF\TwitchChat.NET.WPF.csproj", "{1CCE436A-2199-4C9A-B46D-00848074A10D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CuddleClient", "UI\CuddleClient\CuddleClient.csproj", "{1CCE436A-2199-4C9A-B46D-00848074A10D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageManagement", "Logic\ImageManagement\ImageManagement.csproj", "{F86E537D-80BC-4F74-B77A-450DCCD57034}"
 EndProject

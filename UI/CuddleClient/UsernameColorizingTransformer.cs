@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Media;
 
-namespace TwitchChat.NET.WPF
+namespace UI.CuddleClient
 {
     class UsernameColorizingTransformer : DocumentColorizingTransformer
     {

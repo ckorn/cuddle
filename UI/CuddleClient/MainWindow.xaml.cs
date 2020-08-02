@@ -25,7 +25,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Twitch.Contracts;
 
-namespace TwitchChat.NET.WPF
+namespace UI.CuddleClient
 {
     /// <summary>
     /// Interaktionslogik für MainWindow.xaml
@@ -57,7 +57,7 @@ namespace TwitchChat.NET.WPF
 
         private void Bot_Connected(object sender, EventArgs e)
         {
-            bot.JoinChannel("royalphunk");
+            bot.JoinChannel("nashilein");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

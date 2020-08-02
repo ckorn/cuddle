@@ -1,7 +1,7 @@
-﻿<Application x:Class="TwitchChat.NET.WPF.App"
+﻿<Application x:Class="UI.CuddleClient.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:TwitchChat.NET.WPF"
+             xmlns:local="clr-namespace:UI.CuddleClient"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
          
