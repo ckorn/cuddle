@@ -70,6 +70,7 @@ namespace TwitchChat.NET.WPF
             void doIt()
             {
                 this.textEditor.AppendText($"{e.DisplayMessage}{Environment.NewLine}");
+                this.textEditor.ScrollToEnd();
             }
             if (!Dispatcher.CheckAccess())
             {
