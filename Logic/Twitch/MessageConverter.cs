@@ -36,10 +36,10 @@ namespace Logic.Twitch
             }
             foreach (KeyValuePair<string, string> badgeVersion in message.Badges)
             {
-                Badge badge = this.badgeCache.GetBadge(badgeVersion.Key);
-                badge = badge ?? this.badgeCache.GetBadge($"{badgeVersion.Key}_{badgeVersion.Value}");
+                Badge badge = this.badgeCache.GetBadge($"{message.Channel}_{badgeVersion.Key}_{badgeVersion.Value}");
                 badge = badge ?? this.badgeCache.GetBadge($"{message.Channel}_{badgeVersion.Key}");
-                badge = badge ?? this.badgeCache.GetBadge($"{message.Channel}_{badgeVersion.Key}_{badgeVersion.Value}");
+                badge = badge ?? this.badgeCache.GetBadge($"{badgeVersion.Key}_{badgeVersion.Value}");
+                badge = badge ?? this.badgeCache.GetBadge(badgeVersion.Key);
                 ret.BadgePositionList.Add(new BadgePosition($"{message.Channel}_{badgeVersion.Key}_{badgeVersion.Value}", -1, -1, $"badge:{badgeVersion.Key}_{badgeVersion.Value}", badge));
             }
             return ret;
