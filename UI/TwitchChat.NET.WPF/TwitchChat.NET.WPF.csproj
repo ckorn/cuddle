@@ -172,5 +172,10 @@
       <Name>Twitch</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="twitch_token.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -13,6 +13,7 @@ using Logic.Twitch;
 using LogicAuthorization.Contracts;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -78,12 +79,13 @@ namespace TwitchChat.NET.WPF
             //    token = acquireToken.GetToken();
             //    settings.Token = token;
             //}
-            bot.Connect("tarosmolos", "***REMOVED***");
+            string token = File.ReadAllText("twitch_token.txt");
+            bot.Connect("tarosmolos", token);
 
             ////using (IClient client = new Client())
             //{
             //    client.Connect("irc.chat.twitch.tv", 6697);
-            //    client.Login("tarosmolos", "***REMOVED***");
+            //    client.Login("tarosmolos", token);
             //    //Channel channel = client.GetChannel("raupling");
             //}
         }
