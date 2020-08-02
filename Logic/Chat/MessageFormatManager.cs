@@ -23,6 +23,8 @@ namespace Logic.Chat
                 pos += badgePosition.Text.Length + 1;
             }
             prefixBuilder.Append($"{message.Username}: ");
+            message.UsernameStartIndex = pos;
+            message.UsernameEndIndex = pos + message.Username.Length;
 
             string prefix = prefixBuilder.ToString();
             message.DisplayMessage = prefix + message.PlainText;

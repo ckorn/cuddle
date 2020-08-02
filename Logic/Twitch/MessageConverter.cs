@@ -28,6 +28,7 @@ namespace Logic.Twitch
                 PlainText = message.Message,
                 Username = message.Username,
                 Usercolor = message.Color,
+                UsercolorHex = message.ColorHex,
             };
             foreach (TwitchLib.Client.Models.Emote item in message.EmoteSet.Emotes)
             {

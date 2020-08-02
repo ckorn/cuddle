@@ -23,9 +23,11 @@ namespace TwitchChat.NET.WPF
             VerticalScrollBarVisibility = ScrollBarVisibility.Auto;
             EmoteElementGenerator emoteElementGenerator = new EmoteElementGenerator(this);
             BadgeElementGenerator badgeElementGenerator = new BadgeElementGenerator(this);
+            UsernameColorizingTransformer usernameColorizingTransformer = new UsernameColorizingTransformer(this);
 
             TextArea.TextView.ElementGenerators.Add(emoteElementGenerator);
             TextArea.TextView.ElementGenerators.Add(badgeElementGenerator);
+            TextArea.TextView.LineTransformers.Add(usernameColorizingTransformer);
             elementGeneratorList.Add(emoteElementGenerator);
             elementGeneratorList.Add(badgeElementGenerator);
         }
