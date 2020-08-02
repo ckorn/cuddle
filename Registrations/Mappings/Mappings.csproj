@@ -1,0 +1,90 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{62F23227-9A20-42F5-9CC6-24DCFD6788A6}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Registrations.Mappings</RootNamespace>
+    <AssemblyName>Mappings</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="KernelInitializer.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\Core\Core.Contract\Core.Contract.csproj">
+      <Project>{A45D3B48-C06B-413F-BC78-986C1CDBC136}</Project>
+      <Name>Core.Contract</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CrossCutting\Logging\Logging.csproj">
+      <Project>{EEBB3C93-A41F-4C7F-8B25-71815EC2896A}</Project>
+      <Name>Logging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Authorization\Authorization.csproj">
+      <Project>{C95BF085-342E-4D4E-8FE6-6B40CBD106D2}</Project>
+      <Name>Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Badges\Badges.csproj">
+      <Project>{B17C38B8-AF5D-415D-8DE9-206C85FC2C5D}</Project>
+      <Name>Badges</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Chat\Chat.csproj">
+      <Project>{ABC79C7B-1012-473D-BBC2-04CE19FE8CF5}</Project>
+      <Name>Chat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Emotes\Emotes.csproj">
+      <Project>{44FB5CEC-9CC9-4D98-AD99-842F9B7A8BBE}</Project>
+      <Name>Emotes</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\HttpClient\HttpClient.csproj">
+      <Project>{C93352EB-8D81-42CB-A8AD-264FCF46D56F}</Project>
+      <Name>HttpClient</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\ImageManagement\ImageManagement.csproj">
+      <Project>{F86E537D-80BC-4F74-B77A-450DCCD57034}</Project>
+      <Name>ImageManagement</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Settings\Settings.csproj">
+      <Project>{882FE666-E00C-4AFB-B1C1-DABCF37B0ACC}</Project>
+      <Name>Settings</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Twitch\Twitch.csproj">
+      <Project>{01295C0C-4F62-469A-B427-CA3F891B73EC}</Project>
+      <Name>Twitch</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

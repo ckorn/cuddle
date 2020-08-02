@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Badges
 {
-    public class BadgeCache : IBadgeCache
+    internal class BadgeCache : IBadgeCache
     {
         private readonly Dictionary<string, Badge> badgeCache = new Dictionary<string, Badge>();
         private readonly IBadgeFactory badgeFactory;

@@ -11,7 +11,7 @@ using System.Windows.Media.Imaging;
 
 namespace Logic.ImageManagement
 {
-    public class BitmapFunctions : IBitmapFunctions
+    internal class BitmapFunctions : IBitmapFunctions
     {
         public BitmapImage ToBitmapImage(Bitmap bitmap)
         {

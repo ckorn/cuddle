@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Badges
 {
-    public class BadgeFactory : IBadgeFactory
+    internal class BadgeFactory : IBadgeFactory
     {
         private readonly IHttpClient httpClient;
         private readonly IBitmapFunctions bitmapFunctions;

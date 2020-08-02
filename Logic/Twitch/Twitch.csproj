@@ -43,6 +43,7 @@
     <Compile Include="BadgeConverter.cs" />
     <Compile Include="Bot.cs" />
     <Compile Include="MessageConverter.cs" />
+    <Compile Include="_TwitchActivator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
@@ -134,6 +135,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\Core\Core.Contract\Core.Contract.csproj">
+      <Project>{A45D3B48-C06B-413F-BC78-986C1CDBC136}</Project>
+      <Name>Core.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CrossCutting\DataClasses\DataClasses.csproj">
       <Project>{fc3eb82c-b8d9-4ae9-b8f3-a5dfba8f6ef2}</Project>
       <Name>DataClasses</Name>

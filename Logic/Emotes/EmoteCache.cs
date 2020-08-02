@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Emotes
 {
-    public class EmoteCache : IEmoteCache
+    internal class EmoteCache : IEmoteCache
     {
         private readonly Dictionary<string, Emote> emoteCache = new Dictionary<string, Emote>();
         private readonly IEmoteFactory emoteFactory;

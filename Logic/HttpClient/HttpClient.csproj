@@ -43,8 +43,13 @@
   <ItemGroup>
     <Compile Include="Client.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_HttpClientActivator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\Core\Core.Contract\Core.Contract.csproj">
+      <Project>{A45D3B48-C06B-413F-BC78-986C1CDBC136}</Project>
+      <Name>Core.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HttpClient.Contracts\HttpClient.Contracts.csproj">
       <Project>{8DBDEACE-0F01-4CAD-8916-42D26B18BBAB}</Project>
       <Name>HttpClient.Contracts</Name>

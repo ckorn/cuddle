@@ -43,8 +43,13 @@
   <ItemGroup>
     <Compile Include="Logger.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_LoggingActivator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.Contract\Core.Contract.csproj">
+      <Project>{A45D3B48-C06B-413F-BC78-986C1CDBC136}</Project>
+      <Name>Core.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Logging.Contracts\Logging.Contracts.csproj">
       <Project>{D90C5263-331D-411E-9719-5A4063C192E7}</Project>
       <Name>Logging.Contracts</Name>

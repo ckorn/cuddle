@@ -46,8 +46,13 @@
   <ItemGroup>
     <Compile Include="BitmapFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="_ImageManagementActivator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\Core\Core.Contract\Core.Contract.csproj">
+      <Project>{A45D3B48-C06B-413F-BC78-986C1CDBC136}</Project>
+      <Name>Core.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\ImageManagement.Contracts\ImageManagement.Contracts.csproj">
       <Project>{00b6bd70-1fef-4ef0-b6ac-b0536ca99c55}</Project>
       <Name>ImageManagement.Contracts</Name>

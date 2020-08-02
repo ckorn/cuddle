@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Authorization
 {
-    public class CredentialsManagement : ICredentialsManagement
+    internal class CredentialsManagement : ICredentialsManagement
     {
         private readonly string ClientId = "ffhsd8pxead4mqc1cqf4y3vdp75chr";
 

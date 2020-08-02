@@ -46,8 +46,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UrlAccessed.cs" />
     <Compile Include="WebServer.cs" />
+    <Compile Include="_AuthorizationActivator.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\Core\Core.Contract\Core.Contract.csproj">
+      <Project>{A45D3B48-C06B-413F-BC78-986C1CDBC136}</Project>
+      <Name>Core.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\CrossCutting\DataClasses\DataClasses.csproj">
       <Project>{FC3EB82C-B8D9-4AE9-B8F3-A5DFBA8F6EF2}</Project>
       <Name>DataClasses</Name>

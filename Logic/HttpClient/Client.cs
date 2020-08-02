@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Logic.HttpClient
 {
-    public class Client : IHttpClient
+    internal class Client : IHttpClient
     {
         public byte[] DownloadData(string url) 
         {

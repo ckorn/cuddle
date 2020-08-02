@@ -48,6 +48,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="_SettingsActivator.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
@@ -57,6 +58,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\CrossCutting\Core\Core.Contract\Core.Contract.csproj">
+      <Project>{A45D3B48-C06B-413F-BC78-986C1CDBC136}</Project>
+      <Name>Core.Contract</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Settings.Contracts\Settings.Contracts.csproj">
       <Project>{26167719-AC7E-4B24-AF59-234704E6A870}</Project>
       <Name>Settings.Contracts</Name>

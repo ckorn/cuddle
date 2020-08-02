@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Authorization
 {
-    public class AcquireToken : IAcquireToken
+    internal class AcquireToken : IAcquireToken
     {
         private readonly string RequestTokenUrl = @"https://id.twitch.tv/oauth2/authorize
     ?client_id=#ClientID#

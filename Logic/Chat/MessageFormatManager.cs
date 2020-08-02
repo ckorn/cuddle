@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Chat
 {
-    public class MessageFormatManager : IMessageFormatManager
+    internal class MessageFormatManager : IMessageFormatManager
     {
         public void Format(Message message)
         {

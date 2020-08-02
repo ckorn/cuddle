@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Emotes
 {
-    public class EmoteFactory : IEmoteFactory
+    internal class EmoteFactory : IEmoteFactory
     {
         private readonly IHttpClient httpClient;
         private readonly IBitmapFunctions bitmapFunctions;

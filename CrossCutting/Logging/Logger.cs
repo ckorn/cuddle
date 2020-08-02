@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace CrossCutting.Logging
 {
-    public class Logger : ILogger
+    internal class Logger : ILogger
     {
         public void Log(string line)
         {
-            throw new NotImplementedException();
+            System.Console.WriteLine(line);
         }
     }
 }

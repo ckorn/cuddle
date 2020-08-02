@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Logic.Settings
 {
-    public class Settings : ISettings
+    internal class Settings : ISettings
     {
         public string Token { get => Properties.Settings.Default.TOKEN; set { Properties.Settings.Default.TOKEN = value; Properties.Settings.Default.Save(); } }
 

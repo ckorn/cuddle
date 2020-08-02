@@ -11,10 +11,9 @@ using System.Windows.Controls;
 
 namespace TwitchChat.NET.WPF
 {
-    class EmoticonTextBox : TextEditor, IMessageFormatManager
+    class EmoticonTextBox : TextEditor
     {
         public Dictionary<string, Message> TextMessageDict { get; } = new Dictionary<string, Message>();
-        private readonly MessageFormatManager messageFormatManager = new MessageFormatManager();
         private readonly List<IElementGenerator> elementGeneratorList = new List<IElementGenerator>();
 
         public EmoticonTextBox()
@@ -32,10 +31,8 @@ namespace TwitchChat.NET.WPF
             elementGeneratorList.Add(badgeElementGenerator);
         }
 
-        #region IMessageFormatManager
-        void IMessageFormatManager.Format(Message message)
+        public void AddMessage(Message message)
         {
-            this.messageFormatManager.Format(message);
             if (!TextMessageDict.ContainsKey(message.DisplayMessage))
             {
                 TextMessageDict.Add(message.DisplayMessage, message);
@@ -45,6 +42,5 @@ namespace TwitchChat.NET.WPF
                 }
             }
         }
-        #endregion
     }
 }

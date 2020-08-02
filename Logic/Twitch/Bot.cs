@@ -26,7 +26,7 @@ using TwitchLib.Communication.Models;
 
 namespace Logic.Twitch
 {
-    public class Bot : IBot
+    internal class Bot : IBot
     {
         private readonly TwitchClient client;
         private readonly TwitchAPI twitchAPI;
