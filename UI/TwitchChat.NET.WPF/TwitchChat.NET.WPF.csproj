@@ -68,8 +68,10 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="BadgeElementGenerator.cs" />
     <Compile Include="EmoticonTextBox.cs" />
-    <Compile Include="ImageElementGenerator.cs" />
+    <Compile Include="EmoteElementGenerator.cs" />
+    <Compile Include="IElementGenerator.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -122,6 +124,14 @@
     <ProjectReference Include="..\..\Logic\Authorization\Authorization.csproj">
       <Project>{C95BF085-342E-4D4E-8FE6-6B40CBD106D2}</Project>
       <Name>Authorization</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Badges.Contracts\Badges.Contracts.csproj">
+      <Project>{0FC82A9D-459E-4186-B2C7-95B808DF0FF6}</Project>
+      <Name>Badges.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Logic\Badges\Badges.csproj">
+      <Project>{B17C38B8-AF5D-415D-8DE9-206C85FC2C5D}</Project>
+      <Name>Badges</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\Logic\Chat.Contracts\Chat.Contracts.csproj">
       <Project>{EC58CA16-667E-45FE-B409-AF019A79A01F}</Project>

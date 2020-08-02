@@ -10,19 +10,15 @@ using System.Threading.Tasks;
 
 namespace TwitchChat.NET.WPF
 {
-    class ImageElementGenerator : VisualLineElementGenerator, IMessageFormatManager
+    class EmoteElementGenerator : VisualLineElementGenerator, IElementGenerator
     {
-        // To use this class:
-        // textEditor.TextArea.TextView.ElementGenerators.Add(new ImageElementGenerator());
-
-        private static readonly Dictionary<string, Message> textMessageDict = new Dictionary<string, Message>();
-
         private readonly Dictionary<string, Emote> emoteDict;
-        private readonly MessageFormatManager messageFormatManager = new MessageFormatManager();
+        private readonly EmoticonTextBox emoticonTextBox;
 
-        public ImageElementGenerator()
+        public EmoteElementGenerator(EmoticonTextBox emoticonTextBox)
         {
             emoteDict = new Dictionary<string, Emote>();
+            this.emoticonTextBox = emoticonTextBox;
         }
 
         private Tuple<int, string> FindMatch(int startOffset)
@@ -32,7 +28,7 @@ namespace TwitchChat.NET.WPF
             var fullLine = CurrentContext.Document.GetText(CurrentContext.VisualLine.LastDocumentLine.Offset, endOffset - CurrentContext.VisualLine.LastDocumentLine.Offset);
             var fullLineStartOffset = startOffset - CurrentContext.VisualLine.LastDocumentLine.Offset;
 
-            if (textMessageDict.TryGetValue(fullLine, out Message message)) 
+            if (this.emoticonTextBox.TextMessageDict.TryGetValue(fullLine, out Message message)) 
             {
                 int indexCompare = (fullLineStartOffset == 0) ? 0 : fullLineStartOffset - message.PrefixLength;
                 foreach (EmotePosition emotePosition in message.EmotePositionList.Where(x => x.StartIndex >= indexCompare).OrderBy(x => x.StartIndex))
@@ -77,22 +73,17 @@ namespace TwitchChat.NET.WPF
             return new InlineObjectElement(match.Item2.Length, image);
         }
 
-        #region IMessageFormatManager
-        void IMessageFormatManager.Format(Message message)
+        #region IElementGenerator
+        void IElementGenerator.AddMessage(Message message)
         {
-            this.messageFormatManager.Format(message);
-            if (!textMessageDict.ContainsKey(message.DisplayMessage))
+            foreach (EmotePosition emotePosition in message.EmotePositionList)
             {
-                textMessageDict.Add(message.DisplayMessage, message);
-                foreach (EmotePosition emotePosition in message.EmotePositionList)
+                if ((!this.emoteDict.ContainsKey(emotePosition.Emote.Name)) && (!string.IsNullOrEmpty(emotePosition?.Emote?.Name)))
                 {
-                    if ((!this.emoteDict.ContainsKey(emotePosition.Emote.Name)) && (!string.IsNullOrEmpty(emotePosition?.Emote?.Name)))
-                    {
-                        this.emoteDict.Add(emotePosition.Emote.Name, emotePosition.Emote);
-                    }
+                    this.emoteDict.Add(emotePosition.Emote.Name, emotePosition.Emote);
                 }
             }
-        } 
+        }
         #endregion
     }
 }

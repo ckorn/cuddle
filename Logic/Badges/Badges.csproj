@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7CDE6EBB-4B2B-422F-98FD-CB132A025ACB}</ProjectGuid>
+    <ProjectGuid>{B17C38B8-AF5D-415D-8DE9-206C85FC2C5D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogicAuthorization.Contracts</RootNamespace>
-    <AssemblyName>Authorization.Contracts</AssemblyName>
+    <RootNamespace>Logic.Badges</RootNamespace>
+    <AssemblyName>Badges</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,8 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,14 +43,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="IAcquireToken.cs" />
-    <Compile Include="ICredentialsManagement.cs" />
+    <Compile Include="BadgeCache.cs" />
+    <Compile Include="BadgeFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\CrossCutting\DataClasses\DataClasses.csproj">
       <Project>{FC3EB82C-B8D9-4AE9-B8F3-A5DFBA8F6EF2}</Project>
       <Name>DataClasses</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\CrossCutting\Logging.Contracts\Logging.Contracts.csproj">
+      <Project>{D90C5263-331D-411E-9719-5A4063C192E7}</Project>
+      <Name>Logging.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Badges.Contracts\Badges.Contracts.csproj">
+      <Project>{0FC82A9D-459E-4186-B2C7-95B808DF0FF6}</Project>
+      <Name>Badges.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HttpClient.Contracts\HttpClient.Contracts.csproj">
+      <Project>{8DBDEACE-0F01-4CAD-8916-42D26B18BBAB}</Project>
+      <Name>HttpClient.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\ImageManagement.Contracts\ImageManagement.Contracts.csproj">
+      <Project>{00B6BD70-1FEF-4EF0-B6AC-B0536CA99C55}</Project>
+      <Name>ImageManagement.Contracts</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

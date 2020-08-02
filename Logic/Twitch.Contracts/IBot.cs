@@ -10,7 +10,7 @@ namespace Twitch.Contracts
     {
         event EventHandler Connected;
         event EventHandler<CrossCutting.DataClasses.Message> MessageReceived;
-        void Connect(string username, string token);
+        void Connect(string username);
         void JoinChannel(string name);
     }
 }

@@ -1,12 +1,16 @@
 ﻿using CrossCutting.Logging;
 using CrossCutting.Logging.Contracts;
 using Logic.Authorization;
+using Logic.Badges;
+using Logic.Badges.Contracts;
 using Logic.Chat;
 using Logic.Chat.Contracts;
 using Logic.Emotes;
 using Logic.Emotes.Contracts;
 using Logic.HttpClient;
+using Logic.HttpClient.Contracts;
 using Logic.ImageManagement;
+using Logic.ImageManagement.Contracts;
 using Logic.Settings;
 using Logic.Settings.Contracts;
 using Logic.Twitch;
@@ -22,6 +26,7 @@ using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Interop;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
@@ -35,24 +40,34 @@ namespace TwitchChat.NET.WPF
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly ILogger logger;
+        private readonly IHttpClient httpClient;
+        private readonly IBitmapFunctions bitmapFunctions;
         private readonly IBot bot;
         private readonly IAcquireToken acquireToken;
         private readonly ISettings settings;
         private readonly IEmoteCache emoteCache;
+        private readonly IBadgeCache badgeCache;
+        private readonly ICredentialsManagement credentialsManagement;
         public MainWindow()
         {
             InitializeComponent();
 
-            emoteCache = new EmoteCache(new EmoteFactory(new Client(), new BitmapFunctions()));
-            bot = new Bot(new Logger(), emoteCache, this.textEditor.ImageElementGenerator);
-            acquireToken = new AcquireToken();
+            logger = new Logger();
+            httpClient = new Client();
+            bitmapFunctions = new BitmapFunctions();
+            credentialsManagement = new CredentialsManagement();
+            emoteCache = new EmoteCache(new EmoteFactory(httpClient, bitmapFunctions));
+            badgeCache = new BadgeCache(new BadgeFactory(httpClient, bitmapFunctions, logger));
+            bot = new Bot(logger, emoteCache, badgeCache, this.textEditor, credentialsManagement);
+            acquireToken = new AcquireToken(credentialsManagement);
             settings = new Settings();
             bot.Connected += Bot_Connected;
             bot.MessageReceived += this.Bot_MessageReceived;
         }
         private void Bot_MessageReceived(object sender, CrossCutting.DataClasses.Message e)
         {
-            void doIt() 
+            void doIt()
             {
                 this.textEditor.AppendText($"{e.DisplayMessage}{Environment.NewLine}");
             }
@@ -68,7 +83,7 @@ namespace TwitchChat.NET.WPF
 
         private void Bot_Connected(object sender, EventArgs e)
         {
-            bot.JoinChannel("cohhcarnage");
+            bot.JoinChannel("raupling");
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -79,8 +94,7 @@ namespace TwitchChat.NET.WPF
             //    token = acquireToken.GetToken();
             //    settings.Token = token;
             //}
-            string token = File.ReadAllText("twitch_token.txt");
-            bot.Connect("tarosmolos", token);
+            bot.Connect("tarosmolos");
 
             ////using (IClient client = new Client())
             //{

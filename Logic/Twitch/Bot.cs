@@ -1,12 +1,21 @@
-﻿using CrossCutting.Logging.Contracts;
+﻿using CrossCutting.DataClasses;
+using CrossCutting.Logging.Contracts;
+using Logic.Badges.Contracts;
 using Logic.Chat.Contracts;
 using Logic.Emotes.Contracts;
+using LogicAuthorization.Contracts;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Twitch.Contracts;
+using TwitchLib.Api;
+using TwitchLib.Api.Core.Models.Undocumented.Comments;
+using TwitchLib.Api.V5;
+using TwitchLib.Api.V5.Models.Badges;
+using TwitchLib.Api.V5.Models.Channels;
+using TwitchLib.Api.V5.Models.Chat;
 using TwitchLib.Client;
 using TwitchLib.Client.Enums;
 using TwitchLib.Client.Events;
@@ -20,20 +29,26 @@ namespace Logic.Twitch
     public class Bot : IBot
     {
         private readonly TwitchClient client;
+        private readonly TwitchAPI twitchAPI;
         private readonly ILogger logger;
         private readonly IEmoteCache emoteCache;
+        private readonly IBadgeCache badgeCache;
         private readonly MessageConverter messageConverter;
+        private readonly BadgeConverter badgeConverter;
         private readonly IMessageFormatManager messageFormatManager;
+        private readonly ICredentialsManagement credentialsManagement;
 
         public event EventHandler Connected;
         public event EventHandler<CrossCutting.DataClasses.Message> MessageReceived;
 
-        public Bot(ILogger logger, IEmoteCache emoteCache, IMessageFormatManager messageFormatManager)
+        public Bot(ILogger logger, IEmoteCache emoteCache, IBadgeCache badgeCache, IMessageFormatManager messageFormatManager, ICredentialsManagement credentialsManagement)
         {
             this.logger = logger;
             this.emoteCache = emoteCache;
+            this.badgeCache = badgeCache;
             this.messageFormatManager = messageFormatManager;
-            messageConverter = new MessageConverter(emoteCache);
+            messageConverter = new MessageConverter(this.emoteCache, this.badgeCache);
+            badgeConverter = new BadgeConverter(this.badgeCache);
             var clientOptions = new ClientOptions
             {
                 MessagesAllowedInPeriod = 750,
@@ -41,13 +56,16 @@ namespace Logic.Twitch
             };
             WebSocketClient customClient = new WebSocketClient(clientOptions);
             client = new TwitchClient(customClient);
+            twitchAPI = new TwitchAPI();
+            this.credentialsManagement = credentialsManagement;
         }
 
-        public void Connect(string username, string token)
+        public void Connect(string username)
         {
-            ConnectionCredentials credentials = new ConnectionCredentials(username, token);
+            Credentials credentials = this.credentialsManagement.Load();
+            ConnectionCredentials connectionCredentials = new ConnectionCredentials(username, credentials.AccessToken);
 
-            client.Initialize(credentials);
+            client.Initialize(connectionCredentials);
 
             client.OnLog += Client_OnLog;
             client.OnJoinedChannel += Client_OnJoinedChannel;
@@ -57,6 +75,8 @@ namespace Logic.Twitch
             client.OnConnected += Client_OnConnected;
 
             client.Connect();
+            twitchAPI.Settings.AccessToken = credentials.AccessToken;
+            twitchAPI.Settings.ClientId = credentials.CliendId;
         }
 
         public void JoinChannel(string name)
@@ -73,11 +93,26 @@ namespace Logic.Twitch
         {
             logger.Log($"Connected to {e.AutoJoinChannel}");
             this.Connected?.Invoke(this, new EventArgs());
+            Task.Factory.StartNew(() =>
+            {
+                logger.Log($"Loading global badges");
+                GlobalBadgesResponse globalBadgesResponse = twitchAPI.V5.Badges.GetGlobalBadgesAsync().Result;
+                this.badgeConverter.ConvertGlobalBadges(globalBadgesResponse);
+            });
         }
 
         private void Client_OnJoinedChannel(object sender, OnJoinedChannelArgs e)
         {
             logger.Log("Hey guys! I am a bot connected via TwitchLib!");
+
+            Task.Factory.StartNew(() =>
+            {
+                logger.Log($"Loading subscriber badges for channel {e.Channel}");
+                var userList = twitchAPI.V5.Users.GetUserByNameAsync(e.Channel).Result;
+                string userId = userList.Matches[0].Id;
+                ChannelDisplayBadges channelDisplayBadges = twitchAPI.V5.Badges.GetSubscriberBadgesForChannelAsync(userId).Result;
+                this.badgeConverter.ConvertChannelBadges(e.Channel, channelDisplayBadges);
+            });
             //client.SendMessage(e.Channel, "Hey guys! I am a bot connected via TwitchLib!");
         }
 

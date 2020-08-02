@@ -20,7 +20,6 @@ namespace Logic.Authorization
     &response_type=token
     &scope=#Scope#";
         private readonly string RedirectUrl = "http://127.0.0.1:62324/token/";
-        private readonly string ClientId = "ffhsd8pxead4mqc1cqf4y3vdp75chr";
 
         private readonly string FullRequestTokenUrl;
         private string UrlAccessed = "";
@@ -38,9 +37,10 @@ function parseHash()
 </body>
 </html>";
 
-        public AcquireToken()
+        public AcquireToken(ICredentialsManagement credentialsManagement)
         {
-            FullRequestTokenUrl = RequestTokenUrl.Replace("#ClientID#", ClientId).Replace("#RedirectUrl#", Uri.EscapeUriString(RedirectUrl)).Replace("#Scope#", Uri.EscapeUriString(string.Join(" ", Scope.List.Where(x => x != Scope.CHAT).Select(x => x.Name))));
+            Credentials credentials = credentialsManagement.Load();
+            FullRequestTokenUrl = RequestTokenUrl.Replace("#ClientID#", credentials.CliendId).Replace("#RedirectUrl#", Uri.EscapeUriString(RedirectUrl)).Replace("#Scope#", Uri.EscapeUriString(string.Join(" ", Scope.List.Where(x => x != Scope.CHAT).Select(x => x.Name))));
             FullRequestTokenUrl = FullRequestTokenUrl.Replace(" ", "").Replace(Environment.NewLine, "");
         }
 

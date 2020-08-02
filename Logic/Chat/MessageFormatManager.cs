@@ -12,7 +12,19 @@ namespace Logic.Chat
     {
         public void Format(Message message)
         {
-            string prefix = $"{message.Username}: ";
+            StringBuilder prefixBuilder = new StringBuilder();
+            int pos = 0;
+            foreach (BadgePosition badgePosition in message.BadgePositionList)
+            {
+                badgePosition.StartIndex = pos;
+                badgePosition.EndIndex = pos + badgePosition.Text.Length;
+                prefixBuilder.Append(badgePosition.Text);
+                prefixBuilder.Append(" ");
+                pos += badgePosition.Text.Length + 1;
+            }
+            prefixBuilder.Append($"{message.Username}: ");
+
+            string prefix = prefixBuilder.ToString();
             message.DisplayMessage = prefix + message.PlainText;
             message.PrefixLength = prefix.Length;
         }

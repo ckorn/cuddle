@@ -40,6 +40,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BadgeConverter.cs" />
     <Compile Include="Bot.cs" />
     <Compile Include="MessageConverter.cs" />
   </ItemGroup>
@@ -53,6 +54,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.IO, Version=4.1.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.IO.4.3.0\lib\net462\System.IO.dll</HintPath>
       <Private>True</Private>
@@ -139,6 +141,14 @@
     <ProjectReference Include="..\..\CrossCutting\Logging.Contracts\Logging.Contracts.csproj">
       <Project>{D90C5263-331D-411E-9719-5A4063C192E7}</Project>
       <Name>Logging.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Authorization.Contracts\Authorization.Contracts.csproj">
+      <Project>{7CDE6EBB-4B2B-422F-98FD-CB132A025ACB}</Project>
+      <Name>Authorization.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Badges.Contracts\Badges.Contracts.csproj">
+      <Project>{0FC82A9D-459E-4186-B2C7-95B808DF0FF6}</Project>
+      <Name>Badges.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\Chat.Contracts\Chat.Contracts.csproj">
       <Project>{EC58CA16-667E-45FE-B409-AF019A79A01F}</Project>
